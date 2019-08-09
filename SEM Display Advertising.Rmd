@@ -1,0 +1,149 @@
+---
+title: "Display Advertisement Pricing Model"
+subtitle: "Swarthmore College"
+author: "Ethan Witkowski"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+<br>
+\medskip
+
+Display advertisement is bought and sold in online marketplaces -- to further understand the drivers of display advertisment spend, a Two-Stage Least Squares Regression applied to a system of equations is used to estimate advertisement eqilibrium price. Equilibrium price is analagous to Cost per Advertisement, and may be placed in a budgeting model (Expected Quantity $\times$ Cost per Advertisement) to predict spend.
+
+<br>
+\medskip
+
+#### Simultaneous Equations Model
+
+<br>
+\medskip
+
+##### Structural Equations
+
+<br>
+\medskip
+
+$P_{Dt} = \beta _{0} + \beta _{1} Q_{t} + \beta_{2} Cash_{t}  + \beta_{3} Print_{t} + u_{Dt}$
+
+<br>
+\medskip
+
+$P_{St} = \alpha _{0} + \alpha _{1} Q_{t} + \alpha_{2} Serve_{t} + u_{St}$
+
+<br>
+\bigskip
+
+
+|       $P_{Dt}$ = Inverse Demand
+
+|       $P_{St}$ = Inverse Supply
+
+|       $Q_{t}$ = Exchange Quantity of Display Advertisements
+
+|       $Cash_{t}$ = Net Cash Flow
+
+|       $Print_{t}$ = Price of Print Advertisement
+
+|       $Serve_{t}$ = Cost to Serve Advertisement
+
+|       $u_{Dt}$ = Error term Demand
+
+|       $u_{St}$ = Error term Supply
+
+<br>
+\medskip
+
+#### Reduced-Form Equation
+
+<br>
+\medskip
+
+Through algebraic manipulation, the reduced-form equation for Quantity is determined. It becomes apparent that $Q_{t}$ is correlated with the error terms in both structural equations:
+
+<br>
+\medskip
+
+$\textbf{Q}_{t} = \cfrac{\alpha_{0} + \alpha_{3} Serve_{t} + \textbf{u}_{St} - \beta_{0} - \beta_{2} Cash_{t} - \beta_{3} Print_{t} - \textbf{u}_{Dt}}{\beta_{1} - \alpha_{1}}$
+
+<br>
+\medskip
+
+This defines $Q_{t}$ as an endogenous variable, meaning it is determined within the system of equations. This introduces an endogeneity bias into the simultaneous equations model, which occurs when an independent variable, such as $Q_{t}$, is endogenous. This violates the independence assumption of least squares. A different method is necessary to produce unbiased parameters -- this analysis uses Two-Stage Least Squares. 
+
+<br>
+\medskip
+
+#### Two-Stage Least Squares
+
+<br>
+\medskip
+
+In this instance, the Two-Stage Least Squares method is used to absolve the simultaneous equations model of endogeneity bias. It does this by estimating a fitted value for the endogenous independent variable through the use of Instrumental Variables. $Print_{t}$ and $Cash_{t}$ are instrumental varibles for Quantity Demanded, and $Serve_{t}$ is an instrumental variable for Quantity Supplied.
+
+<br>
+\medskip
+
+Three criteria must be met for a variable to be use as an instrument -- they are as follows:
+
+<br>
+\medskip
+
+1. Correlated with the endogenous independent variable
+
+
+2. Uncorrelated with the error term
+
+
+3. Not already included in the structural equation
+
+<br>
+\medskip
+
+Statisical tests such as the Durbin-Wu-Hausman and Stock-Yogo can test for endogeneity and the strength of instruments, respectively. 
+
+<br>
+\medskip
+
+##### Quantity Demanded
+
+<br>
+\medskip
+
+$\hat{Q}_{Dt} = \gamma_{0} + \gamma_{1} Print_{t} + \gamma_{2} Serve_{t} + \gamma_{3} Cash_{t} + u_{Dt}$
+
+<br>
+\medskip
+
+##### Quantity Supplied
+
+<br>
+\medskip
+
+$\hat{Q}_{St} = \delta_{0} + \delta_{1} Cash_{t} + \delta_{2} Print_{t} + \delta_{3} Serve_{t} + u_{St}$
+
+<br>
+\medskip
+
+#### Identified Structural Equations
+
+<br>
+\medskip
+
+$P_{Dt} = \beta _{0} + \beta _{1} \hat{Q}_{Dt} + \beta_{2} Cash_{t} + \beta_{3} Print_{t} + u_{Dt}$
+
+<br>
+\medskip
+
+$P_{St} = \alpha _{0} + \alpha _{1} \hat{Q}_{St} + \alpha_{2} Serve_{t} + u_{St}$
+
+<br>
+\medskip
+
+The identified structural equations are rid of endogeneity and are able to produce unbiased parameters to predict equilibrium price.
+
+<br>
+<br>
+\medskip
+\medskip
