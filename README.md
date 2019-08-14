@@ -1,2 +1,1 @@
-# Display-Advertising-Pricing-SEM
-Display Advertising Pricing Model
+# Display Advertisement Pricing Model
